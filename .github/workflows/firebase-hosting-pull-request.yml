@@ -8,6 +8,11 @@ jobs:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org
       - uses: actions/checkout@v2
       - run: yarn install && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
