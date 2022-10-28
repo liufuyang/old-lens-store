@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+Learning React with https://github.com/ZhangMYihua/crwn-clothing-v2/tree/main
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
