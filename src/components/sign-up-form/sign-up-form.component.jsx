@@ -2,6 +2,7 @@ import {useState} from "react";
 import {createAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
+import './sign-up-form.styles.scss'
 
 const defaultFormFields = {
   displayName: '', email: '', password: '', confirmPassword: '',
@@ -42,23 +43,26 @@ const SignUpForm = () => {
     setFormFields(defaultFormFields)
   }
 
-  return (<div>
-    <h1>Sign up with email and password</h1>
-    <form onSubmit={handleSubmit}>
-      <FormInput label={'Display Name'} type={'text'} required onChange={handleChange} name={'displayName'}
-                 value={displayName}/>
+  return (
+    <div className='sign-up-container'>
+      <h2>Already have an account?</h2>
+      <span>Sign up with email and password</span>
+      <form onSubmit={handleSubmit}>
+        <FormInput label={'Display Name'} type={'text'} required onChange={handleChange} name={'displayName'}
+                   value={displayName}/>
 
-      <FormInput label={'Email'} type={'email'} required onChange={handleChange} name={'email'} value={email}/>
+        <FormInput label={'Email'} type={'email'} required onChange={handleChange} name={'email'} value={email}/>
 
-      <FormInput label={'Password'} type={'password'} required onChange={handleChange} name={'password'}
-                 value={password}/>
+        <FormInput label={'Password'} type={'password'} required onChange={handleChange} name={'password'}
+                   value={password}/>
 
-      <FormInput label={'Confirm Password'} type={'password'} required onChange={handleChange} name={'confirmPassword'}
-                 value={confirmPassword}/>
+        <FormInput label={'Confirm Password'} type={'password'} required onChange={handleChange}
+                   name={'confirmPassword'}
+                   value={confirmPassword}/>
 
-      <Button type={'submit'}> Submit</Button>
-    </form>
-  </div>)
+        <Button type={'submit'}> Sign up</Button>
+      </form>
+    </div>)
 }
 
 export default SignUpForm;
