@@ -1,6 +1,13 @@
 import {initializeApp} from 'firebase/app';
-import {getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword,createUserWithEmailAndPassword} from 'firebase/auth'
-import {getFirestore, doc, getDoc, setDoc} from 'firebase/firestore'; // getDoc/setDoc is for get/set the data on a doc
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut
+} from 'firebase/auth'
+import {doc, getDoc, getFirestore, setDoc} from 'firebase/firestore'; // getDoc/setDoc is for get/set the data on a doc
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -30,7 +37,7 @@ export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInfo = {}
 ) => {
-  if (!userAuth) return ;
+  if (!userAuth) return;
 
   // get a document reference, even if user is not there, it gives a reference back
   const userDocRef = doc(db, 'users', userAuth.uid)
@@ -43,7 +50,7 @@ export const createUserDocumentFromAuth = async (
     const createdAt = new Date();
 
     try {
-      await  setDoc(userDocRef, {
+      await setDoc(userDocRef, {
         displayName,
         email,
         createdAt,
@@ -66,3 +73,5 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
 }
+
+export const signOutUser = async () => await signOut(auth);
