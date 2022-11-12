@@ -3,9 +3,10 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
-  signOut
+  signOut,
 } from 'firebase/auth'
 import {doc, getDoc, getFirestore, setDoc} from 'firebase/firestore'; // getDoc/setDoc is for get/set the data on a doc
 
@@ -41,9 +42,8 @@ export const createUserDocumentFromAuth = async (
 
   // get a document reference, even if user is not there, it gives a reference back
   const userDocRef = doc(db, 'users', userAuth.uid)
-  console.log(userDocRef)
   const userSnapshot = await getDoc(userDocRef)
-  console.log(userSnapshot.exists()) // print false if user is not in db
+  // console.log(userSnapshot.exists()) // print false if user is not in db
 
   if (!userSnapshot.exists()) {
     const {displayName, email} = userAuth;
@@ -75,3 +75,6 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 }
 
 export const signOutUser = async () => await signOut(auth);
+
+// observer that keeps track of signed-in user
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback)

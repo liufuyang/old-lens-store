@@ -7,6 +7,9 @@ firebase init hosting
 firebase init emulators
 firebase init hosting:github
 
+# too add multiple project/environments
+firebase use --add
+
 firebase emulators:start
 
 firebase deploy --only hosting
