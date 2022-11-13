@@ -11,11 +11,9 @@ const Button = ({children, buttonType, ...otherProps}) => {
     inverted: 'inverted'
   }
   return (
-    <div>
       <button className={`button-container ${BUTTON_TYPES_CLASSES[buttonType]}`} {...otherProps}>
         {children}
       </button>
-    </div>
   )
 }
 
