@@ -4,6 +4,8 @@ import {ReactComponent as Logo} from "../../assets/crown.svg";
 import './navigation.styles.scss'
 import {UserContext} from "../../contexts/user.context";
 import {signOutUser} from "../../utils/firebase/firebase.utils";
+import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
 const Navigation = () => {
   // Navigation re-renders when currentUser changes, as it is hooked with "useContext"
@@ -31,7 +33,9 @@ const Navigation = () => {
             </Link>
             )
           }
+          <CartIcon></CartIcon>
         </div>
+        <CartDropdown/>
       </div>
       <Outlet></Outlet>
     </Fragment>
