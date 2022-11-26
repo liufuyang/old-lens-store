@@ -6,10 +6,12 @@ import {UserContext} from "../../contexts/user.context";
 import {signOutUser} from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import {CartContext} from "../../contexts/cart.context";
 
 const Navigation = () => {
   // Navigation re-renders when currentUser changes, as it is hooked with "useContext"
   const {currentUser} = useContext(UserContext)
+  const {isCartOpen} = useContext(CartContext)
   return (
     <Fragment>
       <div className={'navigation'}>
@@ -35,7 +37,7 @@ const Navigation = () => {
           }
           <CartIcon></CartIcon>
         </div>
-        <CartDropdown/>
+        {isCartOpen && <CartDropdown/>}
       </div>
       <Outlet></Outlet>
     </Fragment>
